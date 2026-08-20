@@ -1,4 +1,7 @@
 package com.sasha.carshop.enums;
 
-public class DriveType {
+public enum DriveType {
+    FWD,
+    RWD,
+    AWD
 }
