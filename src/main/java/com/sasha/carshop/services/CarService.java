@@ -2,6 +2,7 @@ package com.sasha.carshop.services;
 
 import com.sasha.carshop.dto.CreateCarDTO;
 import com.sasha.carshop.dto.ResponseCarDTO;
+import com.sasha.carshop.dto.UpdateCarDTO;
 import com.sasha.carshop.entity.Car;
 import com.sasha.carshop.mapper.CarMapper;
 import com.sasha.carshop.repository.CarRepository;
@@ -30,5 +31,13 @@ public class CarService {
                 .map(CarMapper::fromEntity)
                 .toList();
 
+    }
+
+    @Transactional
+    public ResponseCarDTO updateCarById(Long id, UpdateCarDTO updateCarDTO) {
+
+        Car existsCar = carRepository.findById(id).orElseThrow();
+
+        return CarMapper.updateCar(existsCar, updateCarDTO);
     }
 }

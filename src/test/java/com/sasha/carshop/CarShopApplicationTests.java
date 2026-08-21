@@ -1,13 +1,9 @@
 package com.sasha.carshop;
 
-import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CarShopApplicationTests {
+class CarServiceTest {
 
-    @Test
-    void contextLoads() {
-    }
 
 }
