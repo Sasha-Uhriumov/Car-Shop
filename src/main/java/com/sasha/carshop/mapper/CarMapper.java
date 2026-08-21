@@ -41,7 +41,7 @@ public class CarMapper {
         return dto;
     }
 
-    public static void updateCar(Car car, UpdateCarDTO dto) {
+    public static ResponseCarDTO updateCar(Car car, UpdateCarDTO dto) {
 
         car.setModel(dto.getModel());
         car.setYearOfIssue(dto.getYearOfIssue());
@@ -53,5 +53,7 @@ public class CarMapper {
         car.setTransmissionType(dto.getTransmissionType());
         car.setDriveType(dto.getDriveType());
         car.setVin(dto.getVin());
+
+        return CarMapper.fromEntity(car);
     }
 }
