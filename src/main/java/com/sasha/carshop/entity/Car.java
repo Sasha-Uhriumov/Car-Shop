@@ -46,7 +46,7 @@ public class Car {
     @Column(name = "transmission_type", nullable = false, length = 10)
     private TransmissionType transmissionType;
 
-    @Column(name = "driver_type", nullable = false, length = 5)
+    @Column(name = "drive_type", nullable = false, length = 5)
     private DriveType driveType;
 
     @Column(name = "vin", nullable = false, unique = true, length = 20)
