@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class CarService {
@@ -19,5 +21,14 @@ public class CarService {
     public ResponseCarDTO createCar(CreateCarDTO carDTO) {
 
        return CarMapper.fromEntity(carRepository.save(CarMapper.toEntity(carDTO)));
+    }
+
+    @Transactional(readOnly = true)
+    public List<ResponseCarDTO> getAllCars() {
+
+        return carRepository.findAll().stream()
+                .map(CarMapper::fromEntity)
+                .toList();
+
     }
 }
