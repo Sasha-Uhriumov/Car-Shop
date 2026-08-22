@@ -25,6 +25,12 @@ public class CarService {
     }
 
     @Transactional(readOnly = true)
+    public ResponseCarDTO getCarById(Long id) {
+
+        return CarMapper.fromEntity(carRepository.findById(id).orElseThrow());
+    }
+
+    @Transactional(readOnly = true)
     public List<ResponseCarDTO> getAllCars() {
 
         return carRepository.findAll().stream()
