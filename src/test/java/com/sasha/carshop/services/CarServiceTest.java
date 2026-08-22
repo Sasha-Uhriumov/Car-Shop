@@ -76,4 +76,41 @@ class CarServiceTest {
         assertEquals(DriveType.FWD, result.getDriveType());
         assertEquals("4fj49jfjekfj49frkj94", result.getVin());
     }
+
+    @Test
+    void getCarById() {
+
+        Long carId = 1L;
+
+        Car existsCar = new Car();
+
+        existsCar.setId(carId);
+        existsCar.setModel("BMW");
+        existsCar.setYearOfIssue(2000);
+        existsCar.setMileage(20000);
+        existsCar.setBodyType("sedan");
+        existsCar.setColor("red");
+        existsCar.setEngineSize(2.5);
+        existsCar.setHorsePower(905);
+        existsCar.setTransmissionType(TransmissionType.AUTOMATIC);
+        existsCar.setDriveType(DriveType.AWD);
+        existsCar.setVin("j3jre934r9msdm3ew");
+
+        when(carRepository.findById(carId)).thenReturn(Optional.of(existsCar));
+
+        ResponseCarDTO result = carService.getCarById(carId);
+
+        assertNotNull(result);
+        assertEquals(carId, result.getId());
+        assertEquals("BMW", result.getModel());
+        assertEquals(2000, result.getYearOfIssue());
+        assertEquals(20000, result.getMileage());
+        assertEquals("sedan", result.getBodyType());
+        assertEquals("red", result.getColor());
+        assertEquals(2.5, result.getEngineSize());
+        assertEquals(905, result.getHorsePower());
+        assertEquals(TransmissionType.AUTOMATIC, result.getTransmissionType());
+        assertEquals(DriveType.AWD, result.getDriveType());
+        assertEquals("j3jre934r9msdm3ew", result.getVin());
+    }
 }
