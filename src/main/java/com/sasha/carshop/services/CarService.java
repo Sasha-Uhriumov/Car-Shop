@@ -21,7 +21,12 @@ public class CarService {
     @Transactional
     public ResponseCarDTO createCar(CreateCarDTO carDTO) {
 
-       return CarMapper.fromEntity(carRepository.save(CarMapper.toEntity(carDTO)));
+        if (carRepository.existsCarByVin(carDTO.getVin())) {
+            throw new IllegalArgumentException();
+        }
+
+        Car car = CarMapper.toEntity(carDTO);
+        return CarMapper.fromEntity(carRepository.save(car));
     }
 
     @Transactional(readOnly = true)
